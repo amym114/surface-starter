@@ -9,11 +9,9 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
-alias MyAppWeb.Repo
-alias MyAppWeb.Link
 
-  Repo.insert! %Link{
+MyApp.Repo.insert!(%MyApp.Contacts.Contact{
     name: "Seeded Name",
     email: "seed@emailaddress.com",
-    phone: "123-456-7890"
-  }
+    phone: "123-456-7890"}
+  )
