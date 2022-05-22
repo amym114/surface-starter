@@ -1,7 +1,15 @@
 defmodule MyAppWeb.ContactLive.FormComponent do
-  use MyAppWeb, :live_component
+  use Surface.LiveComponent
+
+  alias Surface.Components.Form
+  alias Surface.Components.Form.{Field, Label, TextInput, Submit, ErrorTag}
 
   alias MyApp.Contacts
+
+  prop contact, :struct, required: true
+  prop action, :atom, default: :new
+  prop return_to, :string
+
 
   @impl true
   def update(%{contact: contact} = assigns, socket) do

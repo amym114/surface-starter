@@ -1,0 +1,32 @@
+<div>
+ <Form
+let={f}
+for={@changeset}
+id="contact-form"
+target={@myself}
+change="validate"
+submit="save">
+	<Field name={:name}>
+		<Label/>
+		<div class="control">
+		<TextInput value={@contact.name}/>
+		<ErrorTag field={:name} />
+		</div>
+	</Field>
+		<Field name={:email}>
+		<Label/>
+		<div class="control">
+			<TextInput value={@contact.email}/>
+			<ErrorTag field={:email} />
+		</div>
+	</Field>
+	<Field name={:phone}>
+		<Label/>
+		<div class="control">
+			<TextInput value={@contact.phone}/>
+			<ErrorTag field={:phone} />
+		</div>
+	</Field>
+	<Submit>Save</Submit>
+</Form>
+</div>

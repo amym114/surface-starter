@@ -1,8 +1,15 @@
 defmodule MyAppWeb.ContactLive.Index do
-  use MyAppWeb, :live_view
+  use Surface.LiveView
+
+  alias MyAppWeb.ContactLive.FormComponent
+  alias MyAppWeb.Router.Helpers, as: Routes
+  alias Surface.Components.{LivePatch, Link, LiveRedirect}
 
   alias MyApp.Contacts
   alias MyApp.Contacts.Contact
+
+  alias MyAppWeb.LiveHelpers.LiveModal
+
 
   @impl true
   def mount(_params, _session, socket) do

@@ -1,0 +1,66 @@
+<h1>Listing Contacts</h1>
+
+{#if @live_action in [:new, :edit]}
+<LiveModal id="modal" return_to={Routes.contact_index_path(@socket, :index)}>
+<FormComponent
+    id={@contact.id || :new}
+    action={@live_action}
+    contact={@contact}
+    return_to={Routes.contact_index_path(@socket, :index)}
+/>
+</LiveModal>
+{/if} 
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="contacts">
+{#for contact <- @contacts}
+
+<tr id={"contact-#{contact.id}"}>
+
+<td>{contact.name}</td>
+
+<td>{contact.email}</td>
+
+<td>{contact.phone}</td>
+
+<td>
+
+<LiveRedirect to={Routes.contact_show_path(@socket, :show, contact)}>Show</LiveRedirect>\
+
+<LivePatch to={Routes.contact_index_path(@socket, :edit, contact)}>Edit</LivePatch>
+
+<Link
+
+click="delete"
+
+to="#"
+
+values={id: contact.id}
+
+opts={data: [confirm: "Are you sure?"]}
+
+"Delete"
+
+>Delete</Link>
+
+</td>
+
+</tr>
+
+{/for}
+
+  </tbody>
+</table>
+
+<span><LivePatch to={Routes.contact_index_path(@socket, :new)}>New Contact</LivePatch></span>
+
